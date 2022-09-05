@@ -42,7 +42,7 @@ int PosForSecondline(float x, float y) {
 int PosForThirdline(float x, float y) {
     int res;
     float y1;
-    y1 = -x + 2;
+    y1 = 2 - x;
     if (y > y1) res = 1;
     else if (y == y1) res = 0;
     else res = -1;
@@ -53,14 +53,14 @@ float Position(float x, float y) {
     int pos1, pos2, pos3;
     pos1 = PosForFirsline(x, y);
     pos2 = PosForSecondline(x, y);
-    pos2 = PosForThirdline(x, y);
+    pos3 = PosForThirdline(x, y);
     if(pos1 == -1 && pos2 == 1 && pos3 == 1)printf("area 1");
-    else if(pos1 == -1 && pos2 == 1 && pos3 == -1) printf("area 2");
+    else if(pos1 == -1 && pos2 == -1 && pos3 == 1) printf("area 2");
     else if(pos1 == -1 && pos2 == -1 && pos3 == -1) printf("area 3");
     else if(pos1 == 1 && pos2 == -1 && pos3 == -1) printf("area 4");
-    else if(pos1 == 1 && pos2 == -1 && pos3 == 1) printf("area 5");
+    else if(pos1 == 1 && pos2 == 1 && pos3 == -1) printf("area 5");
     else if(pos1 == 1 && pos2 == 1 && pos3 == 1) printf("area 6");
-    else if(pos1 == -1 && pos2 == -1 && pos3 == 1) printf("area 7");
+    else if(pos1 == -1 && pos2 == 1 && pos3 == -1) printf("area 7");
     else if(pos1 == 0) {
         if(pos2 == 0) printf("line 1 and line 2");
         else if(pos3 == 0) printf("line 1 and line 3");
