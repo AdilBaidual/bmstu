@@ -3,14 +3,19 @@
 
 
 float Position(float x, float y);
+float Input(float *x, float *y);
 
 void main() {
     float x, y;
     printf("Line equation: y = 0.5x + 1\n");
-    printf("Please insert coordinates of the point: \n");
-    scanf("%f %f", &x, &y);
+    Input(&x, &y);
     Position(x, y);
     getch();
+}
+
+float Input(float *x, float *y) {
+    printf("Please insert coordinates of the point: \n");
+    scanf("%f %f", x, y);
 }
 
 float Position(float x, float y) {

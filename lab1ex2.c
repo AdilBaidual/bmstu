@@ -7,16 +7,21 @@ float Position(float x, float y);
 int PosForFirstline(float x, float y);
 int PosForSecondline(float x, float y);
 int PosForThirdline(float x, float y);
+float Input(float *x, float *y);
 
 void main() {
     float x, y;
     printf("y = 2x + 2\n");
     printf("y = 0.5x - 1\n");
     printf("y = -x + 2\n");
-    printf("Please insert coordinates of the point: \n");
-    scanf("%f %f", &x, &y);
+    Input(&x, &y);
     Position(x, y);
     getch();
+}
+
+float Input(float *x, float *y) {
+    printf("Please insert coordinates of the point: \n");
+    scanf("%f %f", x, y);
 }
 
 int PosForFirsline(float x, float y) {
