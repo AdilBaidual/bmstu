@@ -2,6 +2,7 @@
 #include <conio.h>
 
 
+
 float Position(float x, float y);
 float Input(float *x, float *y);
 

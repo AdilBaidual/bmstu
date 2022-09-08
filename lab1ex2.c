@@ -2,7 +2,6 @@
 #include <conio.h>
 #include <stdbool.h>
 
-
 float Position(float x, float y);
 int PosForFirstline(float x, float y);
 int PosForSecondline(float x, float y);

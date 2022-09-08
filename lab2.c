@@ -2,7 +2,7 @@
 #include <math.h>
 #include <conio.h>
 
-void Cell(double a);
+void Cell(float a);
 
 void main() {
     float x1, x2, iter, delt, x;
@@ -30,6 +30,6 @@ void main() {
     getch();
 }
 
-void Cell(double a) {
-    printf("%-7.3lf|", a);
+void Cell(float a) {
+    printf("%-7.3f|", a);
 }
