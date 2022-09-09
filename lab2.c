@@ -4,6 +4,7 @@
 #include <stdbool.h>
 //ЗАЩИТА ОТ ДУРАКА
 
+
 bool Check(double x1, double x2, double iter);
 void Input(double *x1, double *x2, double *iter);
 void Cell(double a);
@@ -11,6 +12,7 @@ double Delta(double x1, double x2, double iter);
 void FirstTable(double x1, double x2, double iter);
 void SecondTable(double x1, double x2, double iter);
 void ThirdTable(double x1, double x2, double iter);
+void Restart();
 
 
 void main() {
@@ -21,12 +23,17 @@ void main() {
             FirstTable(x1, x2, iter);
             SecondTable(x1, x2, iter);
             ThirdTable(x1, x2, iter);
-            getch();
+            Restart();
         }
         else {
             continue;
         }
     }
+}
+
+void Restart() {
+    printf("\nPress any button to start again\n");
+    getch();
 }
 
 bool Check(double x1, double x2, double iter) {
