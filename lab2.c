@@ -2,16 +2,16 @@
 #include <math.h>
 #include <conio.h>
 
-void Cell(float a);
+void Cell(double a);
 
 void main() {
-    float x1, x2, iter, delt, x;
+    double x1, x2, iter, delt, x;
     printf("range:\n");
-    scanf("%f %f", &x1, &x2);
+    scanf("%lf %lf", &x1, &x2);
     printf("iterations:\n");
-    scanf("%f", &iter);
+    scanf("%lf", &iter);
     delt = (x2 - x1) / (iter - 1);
-    printf("%f\n", delt);
+    printf("%lf\n", delt);
     printf("x    |");
     x = x1;
     for(int i = 1; i < iter * 2 + 1; i++) {
@@ -30,6 +30,6 @@ void main() {
     getch();
 }
 
-void Cell(float a) {
-    printf("%-7.3f|", a);
+void Cell(double a) {
+    printf("%-7.3lf|", a);
 }

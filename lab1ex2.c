@@ -2,14 +2,14 @@
 #include <conio.h>
 #include <stdbool.h>
 
-float Position(float x, float y);
-int PosForFirstline(float x, float y);
-int PosForSecondline(float x, float y);
-int PosForThirdline(float x, float y);
-float Input(float *x, float *y);
+double Position(double x, double y);
+int PosForFirstline(double x, double y);
+int PosForSecondline(double x, double y);
+int PosForThirdline(double x, double y);
+double Input(double *x, double *y);
 
 void main() {
-    float x, y;
+    double x, y;
     printf("y = 2x + 2\n");
     printf("y = 0.5x - 1\n");
     printf("y = -x + 2\n");
@@ -18,14 +18,14 @@ void main() {
     getch();
 }
 
-float Input(float *x, float *y) {
+double Input(double *x, double *y) {
     printf("Please insert coordinates of the point: \n");
-    scanf("%f %f", x, y);
+    scanf("%lf %lf", x, y);
 }
 
-int PosForFirsline(float x, float y) {
+int PosForFirsline(double x, double y) {
     int res;
-    float y1;
+    double y1;
     y1 = 2*x + 2;
     if (y > y1) res = 1;
     else if (y == y1) res = 0;
@@ -33,9 +33,9 @@ int PosForFirsline(float x, float y) {
     return res;
 }
 
-int PosForSecondline(float x, float y) {
+int PosForSecondline(double x, double y) {
     int res;
-    float y1;
+    double y1;
     y1 = 0.5*x - 1;
     if (y > y1) res = 1;
     else if (y == y1) res = 0;
@@ -43,9 +43,9 @@ int PosForSecondline(float x, float y) {
     return res;
 }
 
-int PosForThirdline(float x, float y) {
+int PosForThirdline(double x, double y) {
     int res;
-    float y1;
+    double y1;
     y1 = 2 - x;
     if (y > y1) res = 1;
     else if (y == y1) res = 0;
@@ -53,7 +53,7 @@ int PosForThirdline(float x, float y) {
     return res;
 }
 
-float Position(float x, float y) {
+double Position(double x, double y) {
     int pos1, pos2, pos3;
     pos1 = PosForFirsline(x, y);
     pos2 = PosForSecondline(x, y);

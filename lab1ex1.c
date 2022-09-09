@@ -3,24 +3,24 @@
 
 
 
-float Position(float x, float y);
-float Input(float *x, float *y);
+double Position(double x, double y);
+double Input(double *x, double *y);
 
 void main() {
-    float x, y;
+    double x, y;
     printf("Line equation: y = 0.5x + 1\n");
     Input(&x, &y);
     Position(x, y);
     getch();
 }
 
-float Input(float *x, float *y) {
+double Input(double *x, double *y) {
     printf("Please insert coordinates of the point: \n");
-    scanf("%f %f", x, y);
+    scanf("%lf %lf", x, y);
 }
 
-float Position(float x, float y) {
-    float y1;
+double Position(double x, double y) {
+    double y1;
     y1 = 0.5 * x + 1;
     if (y > y1) {
         printf("Point is below line");
