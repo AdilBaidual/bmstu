@@ -4,17 +4,17 @@
 
 
 double Position(double x, double y);
-double Input(double *x, double *y);
+void Input(double *x, double *y);
 
 void main() {
     double x, y;
-    printf("Line equation: y = 0.5x + 1\n");
     Input(&x, &y);
     Position(x, y);
     getch();
 }
 
-double Input(double *x, double *y) {
+void Input(double *x, double *y) {
+    printf("Line equation: y = 0.5x + 1\n");
     printf("Please insert coordinates of the point: \n");
     scanf("%lf %lf", x, y);
 }

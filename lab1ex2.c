@@ -6,19 +6,19 @@ double Position(double x, double y);
 int PosForFirstline(double x, double y);
 int PosForSecondline(double x, double y);
 int PosForThirdline(double x, double y);
-double Input(double *x, double *y);
+void Input(double *x, double *y);
 
 void main() {
     double x, y;
-    printf("y = 2x + 2\n");
-    printf("y = 0.5x - 1\n");
-    printf("y = -x + 2\n");
     Input(&x, &y);
     Position(x, y);
     getch();
 }
 
-double Input(double *x, double *y) {
+void Input(double *x, double *y) {
+    printf("y = 2x + 2\n");
+    printf("y = 0.5x - 1\n");
+    printf("y = -x + 2\n");
     printf("Please insert coordinates of the point: \n");
     scanf("%lf %lf", x, y);
 }
