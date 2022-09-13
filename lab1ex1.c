@@ -1,9 +1,7 @@
 #include <stdio.h>
 #include <conio.h>
 
-
-
-double Position(double x, double y);
+void Position(double x, double y);
 void Input(double *x, double *y);
 
 void main() {
@@ -11,6 +9,7 @@ void main() {
     Input(&x, &y);
     Position(x, y);
     getch();
+    system("pause");
 }
 
 void Input(double *x, double *y) {
@@ -19,7 +18,7 @@ void Input(double *x, double *y) {
     scanf("%lf %lf", x, y);
 }
 
-double Position(double x, double y) {
+void Position(double x, double y) {
     double y1;
     y1 = 0.5 * x + 1;
     if (y > y1) {
