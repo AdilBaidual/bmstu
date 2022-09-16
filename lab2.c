@@ -47,7 +47,7 @@ void Restart() {
 }
 
 bool Check(double x1, double x2, int iter) {
-    if(x1 < 0 || x2 < 0 || iter <= 0 || x1 == 1.5708 || x2 == 1.5708) {
+    if(x1 < 0 || x2 < 0 || iter <= 0 || x1 == 1.5708 || x2 == 1.5708 || (iter == 1 && x1 != x2)) {
         printf("Error, try again!\n");
         return false;
     }
@@ -76,6 +76,9 @@ void Cell(double a) {
 double Delta(double x1, double x2, int iter) {
     double delt;
     delt = (x2 - x1) / (iter - 1);
+    if(delt == 0 || iter == 1) {
+        delt = 1;
+    }
     printf("\n%g\n", delt);
     return delt;
 }
@@ -105,13 +108,13 @@ void SecondTable(double x1, double x2, int iter) {
     delt = Delta(x1, x2, iter);
     printf("while:\nx    |");
     x = x1;
-    while(x <= x2) {
+    while(x < x2 + delt) {
         Cell(x);
         x += delt;
     }
     printf("\nf(x) |");
     x = x1;
-    while(x <= x2) {
+    while(x < x2 + delt) {
         Cell(tan(x) * sqrt(x));
         x += delt;
     }
@@ -125,11 +128,11 @@ void ThirdTable(double x1, double x2, int iter) {
     do{
         Cell(x);
         x += delt;
-    }while(x <= x2);
+    }while(x < x2 + delt);
     printf("\nf(x) |");
     x = x1;
     do{
         Cell(tan(x) * sqrt(x));
         x += delt;
-    }while(x <= x2);
+    }while(x < x2 + delt);
 }
