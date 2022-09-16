@@ -3,19 +3,20 @@
 #include <conio.h>
 #include <stdbool.h>
 
-bool Check(double x1, double x2, double iter);
-double Delta(double x1, double x2, double iter);
-void Start(double x1, double x2, double iter);
-void Input(double *x1, double *x2, double *iter);
+bool Check(double x1, double x2, int iter);
+double Delta(double x1, double x2, int iter);
+void Start(double x1, double x2, int iter);
+void Input(double *x1, double *x2, int *iter);
 void Cell(double a);
-void FirstTable(double x1, double x2, double iter);
-void SecondTable(double x1, double x2, double iter);
-void ThirdTable(double x1, double x2, double iter);
+void FirstTable(double x1, double x2, int iter);
+void SecondTable(double x1, double x2, int iter);
+void ThirdTable(double x1, double x2, int iter);
 void Restart();
 
 void main() {
     while(true) {
-        double x1, x2, iter, x;
+        double x1, x2;
+        int iter;
         Input(&x1, &x2, &iter);
         if(Check(x1, x2, iter)) {
             Start(x1, x2, iter);
@@ -27,7 +28,7 @@ void main() {
     }
 }
 
-void Start(double x1, double x2, double iter) {
+void Start(double x1, double x2, int iter) {
     if(x1 < x2) {
         FirstTable(x1, x2, iter);
         SecondTable(x1, x2, iter);
@@ -45,8 +46,8 @@ void Restart() {
     getch();
 }
 
-bool Check(double x1, double x2, double iter) {
-    if(x1 < 0 || x2 < 0 || iter <= 0) {
+bool Check(double x1, double x2, int iter) {
+    if(x1 < 0 || x2 < 0 || iter <= 0 || x1 == 1.5708 || x2 == 1.5708) {
         printf("Error, try again!\n");
         return false;
     }
@@ -60,11 +61,11 @@ bool Check(double x1, double x2, double iter) {
     }
 }
 
-void Input(double *x1, double *x2, double *iter) {
+void Input(double *x1, double *x2, int *iter) {
     printf("range:\n");
     scanf("%lf %lf", x1, x2);
     printf("iterations:\n");
-    scanf("%lf", iter);
+    scanf("%d", iter);
 
 }
 
@@ -72,14 +73,14 @@ void Cell(double a) {
     printf("%-7.3g|", a);
 }
 
-double Delta(double x1, double x2, double iter) {
+double Delta(double x1, double x2, int iter) {
     double delt;
     delt = (x2 - x1) / (iter - 1);
     printf("\n%g\n", delt);
     return delt;
 }
 
-void FirstTable(double x1, double x2, double iter) {
+void FirstTable(double x1, double x2, int iter) {
     double delt, x;
     delt = Delta(x1, x2, iter);
     printf("for:\nx    |");
@@ -99,7 +100,7 @@ void FirstTable(double x1, double x2, double iter) {
     }
 }
 
-void SecondTable(double x1, double x2, double iter) {
+void SecondTable(double x1, double x2, int iter) {
     double delt, x, i;
     delt = Delta(x1, x2, iter);
     printf("while:\nx    |");
@@ -116,7 +117,7 @@ void SecondTable(double x1, double x2, double iter) {
     }
 }
 
-void ThirdTable(double x1, double x2, double iter) {
+void ThirdTable(double x1, double x2, int iter) {
     double delt, x, i;
     delt = Delta(x1, x2, iter);
     printf("do while:\nx    |");
