@@ -4,6 +4,7 @@
 #include <stdbool.h>
 
 void Input(double *E);
+bool Check(double E);
 double Abs(double x1, double x2);
 double Factorial(double num, double lastfact);
 void RowSum(double E);
@@ -13,14 +14,29 @@ void main() {
     double E;
     while(true){
         Input(&E);
-        RowSum(E);
-        getch();
+        if(Check(E)) {
+            RowSum(E);
+            printf("Press any button to restart\n");
+            getch();
+        }
+        else {
+            continue;
+        }
+        
     }
 }
 
 void Input(double *E) {
     printf("enter precision E\n");
     scanf("%lf", E);
+}
+
+bool Check(double E) {
+    if(E <= 0) {
+        printf("Enter a number greater than zero\n");
+        return false;
+    }
+    return true;
 }
 
 double Abs(double x1, double x2) {
@@ -45,14 +61,14 @@ double RowElement(double n, double lastfact) {
 void RowSum(double E) {
     double S = 1;
     double sa = 1;
-    double sb;
+    double sb = 0;
     double n = 2;
     while(Abs(sa, sb) >= E) {
         sb = sa;
         sa = RowElement(n, 1/sa);
         n += 1;
         S += sa;
-        printf("%.15lf %.15lf\n", sa, S);
+        printf("%.15lf %.15lf %.15lf\n", sa, sb, S);
     }
     printf("%.15lf\n", S);
 }
