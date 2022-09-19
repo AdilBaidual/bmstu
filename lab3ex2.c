@@ -54,8 +54,8 @@ void RowSum(double E, double a, double b) {
     double sb = LeftRectangleMethod(2, a + (b-a)/2, (b-a)/2);
     printf("%lf %lf\n", sa, sb);
     double S;
-    double N = 3;
-    double h = (b - a)/N;
+    double N = b-a+1;
+    double h = 4;
     double x = a + h;
     while(Abs(sa, sb)>= E) {
         printf("in");
@@ -65,5 +65,5 @@ void RowSum(double E, double a, double b) {
         h = (b - a)/N;
         x = a + h;
     }
-    printf("%.15lf\n", sb);
+    printf(" %.15lf\n", sb);
 }

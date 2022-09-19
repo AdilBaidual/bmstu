@@ -47,8 +47,20 @@ void Restart() {
 }
 
 bool Check(double x1, double x2, int iter) {
-    if(x1 < 0 || x2 < 0 || iter <= 0 || x1 == 1.5708 || x2 == 1.5708 || (iter == 1 && x1 != x2)) {
-        printf("Error, try again!\n");
+    if(x1 < 0 || x2 < 0) {
+        printf("Enter numbers(x1, x2) greater than or equal to zero\n");
+        return false;
+    }
+    else if(iter <= 0) {
+        printf("Enter the number of iterations greater than zero\n");
+        return false;
+    }
+    else if(x1 == 1.5708 || x2 == 1.5708) {
+        printf("Numbers cannot be equal to 1.5708\n");
+        return false;
+    }
+    else if(iter == 1 && x1 != x2) {
+        printf("Numbers cannot be different in one iteration\n");
         return false;
     }
     else {

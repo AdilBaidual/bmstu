@@ -4,6 +4,7 @@
 #include <stdbool.h>
 
 void Input(double *E);
+double Abs(double x1, double x2);
 double Factorial(double num, double lastfact);
 void RowSum(double E);
 double RowElement(double n, double lastfact);
@@ -22,6 +23,15 @@ void Input(double *E) {
     scanf("%lf", E);
 }
 
+double Abs(double x1, double x2) {
+    if(x1 - x2 < 0) {
+        return (x1 - x2) * -1;
+    }
+    else {
+        return (x1 - x2);
+    }
+}
+
 double Factorial(double n, double lastfact) {
     double fact = lastfact * n;
     return fact;
@@ -37,7 +47,8 @@ void RowSum(double E) {
     double sa = 1;
     double sb;
     double n = 2;
-    while(sa >= E) {
+    while(Abs(sa, sb) >= E) {
+        sb = sa;
         sa = RowElement(n, 1/sa);
         n += 1;
         S += sa;
