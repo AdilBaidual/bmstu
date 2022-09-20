@@ -5,60 +5,80 @@
 #include <stdbool.h>
 
 void Input(double *a);
-void ArraySize(double *n);
-double Array(double *arr, double n);
-int FindMax(double *arr, double n);
-int FindMin(double *arr, double n);
+void ArraySize(int *n);
+bool Check(int n);
+double Array(double *arr, int n);
+int FindMax(double *arr, int n);
+int FindMin(double *arr, int n);
 double Func(double mn, double mx);
-void Var0(double *arr, double n);
+void Var0(double *arr, int n);
 
 void main() {
     double arr;
-    double n;
-    ArraySize(&n);
-    Array(&arr, n);
-    Var0(&arr, n);
-    getch();
+    int n;
+    while(true) {
+        ArraySize(&n);
+        if(Check(n)) {
+            Array(&arr, n);
+            Var0(&arr, n);
+            getch();
+        }
+        else {
+            continue;
+        }
+    }
 }
 
 void Input(double *a) {
     scanf("%lf", a);
 }
 
-void ArraySize(double *n) {
+void ArraySize(int *n) {
     printf("Enter the size of the number of array elements\n");
-    Input(n);
+    scanf("%d", n);
 }
 
-double Array(double *arr, double n) {
+bool Check(int n) {
+    if(n <= 0) {
+        printf("Numbers must be greater than zero\n");
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
+double Array(double *arr, int n) {
     double *mas = malloc(n * sizeof(double));
+    double x;
+    printf("Enter array values\n");
     for(int i = 0; i < n; i++) {
-        double x;
+        printf("%d ", i);
         Input(&x);
         *(arr + i) = x;
     }
     arr = mas;
 }
 
-int FindMax(double *arr, double n) {
+int FindMax(double *arr, int n) {
     int mx = 0;
     for(int i = 0; i < n; i++) {
         if(*(arr + i) > *(arr + mx)) {
             mx = i;
         }
     }
-    //printf("%d\n", mx);
+    printf(" Max: %d\n", mx);
     return mx;
 }
 
-int FindMin(double *arr, double n) {
+int FindMin(double *arr, int n) {
     int mn = 0;
     for(int i = 0; i < n; i++) {
         if(*(arr + i) < *(arr + mn)) {
             mn = i;
         }
     }
-    printf("%d\n", mn);
+    printf("Min: %d\n", mn);
     return mn;
 }
 
@@ -67,7 +87,7 @@ double Func(double mn, double mx) {
     return f;
 }
 
-void Var0(double *arr, double n) {
+void Var0(double *arr, int n) {
     double sum = 0;
     int start = FindMax(arr, n);
     double f = Func(FindMin(arr, n), FindMax(arr, n));
@@ -76,5 +96,5 @@ void Var0(double *arr, double n) {
             sum += *(arr + i);
         }
     }
-    printf("%lf", sum);
+    printf("%lf\n", sum);
 }
