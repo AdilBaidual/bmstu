@@ -63,6 +63,10 @@ bool Check(double x1, double x2, int iter) {
         printf("Numbers cannot be different in one iteration\n");
         return false;
     }
+    else if(iter > 1 && x1 == x2) {
+        printf("The left and right bounds cannot be the same for a large number of iterations\n");
+        return false;
+    }
     else {
         if(x1 > x2) {
             int x = x1;
