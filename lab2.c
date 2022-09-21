@@ -124,13 +124,13 @@ void SecondTable(double x1, double x2, int iter) {
     delt = Delta(x1, x2, iter);
     printf("while:\nx    |");
     x = x1;
-    while(x < x2 + delt) {
+    while(x < x2 + delt - 0.0000001) {
         Cell(x);
         x += delt;
     }
     printf("\nf(x) |");
     x = x1;
-    while(x < x2 + delt) {
+    while(x < x2 + delt - 0.0000001) {
         Cell(tan(x) * sqrt(x));
         x += delt;
     }
@@ -144,11 +144,11 @@ void ThirdTable(double x1, double x2, int iter) {
     do{
         Cell(x);
         x += delt;
-    }while(x < x2 + delt);
+    }while(x < x2 + delt - 0.0000001);
     printf("\nf(x) |");
     x = x1;
     do{
         Cell(tan(x) * sqrt(x));
         x += delt;
-    }while(x < x2 + delt);
+    }while(x < x2 + delt - 0.0000001);
 }
