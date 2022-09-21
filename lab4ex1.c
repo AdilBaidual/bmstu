@@ -5,20 +5,22 @@
 #include <stdbool.h>
 
 void Input(double *a);
-void ArraySize(int *n);
-bool Check(int n);
+void ArraySize(double *n);
+int CheckInt(double n);
+bool Check(double n);
 double Array(double *arr, int n);
 int FindMax(double *arr, int n);
 int FindMin(double *arr, int n);
-double Func(double mn, double mx);
+double Func(int mn, int mx, double *arr);
 void Var0(double *arr, int n);
 
 void main() {
     double arr;
-    int n;
+    double n;
     while(true) {
         ArraySize(&n);
         if(Check(n)) {
+            n = CheckInt(n);
             Array(&arr, n);
             Var0(&arr, n);
             getch();
@@ -33,19 +35,25 @@ void Input(double *a) {
     scanf("%lf", a);
 }
 
-void ArraySize(int *n) {
+void ArraySize(double *n) {
     printf("Enter the size of the number of array elements\n");
-    scanf("%d", n);
+    scanf("%lf", n);
 }
 
-bool Check(int n) {
+bool Check(double n) {
     if(n <= 0) {
         printf("Numbers must be greater than zero\n");
         return false;
     }
     else{
+
         return true;
     }
+}
+
+int CheckInt(double n) {
+    int a = n;
+    return a;
 }
 
 double Array(double *arr, int n) {
@@ -67,7 +75,7 @@ int FindMax(double *arr, int n) {
             mx = i;
         }
     }
-    printf(" Max: %d\n", mx);
+    //printf(" Max: %d\n", mx);
     return mx;
 }
 
@@ -78,23 +86,24 @@ int FindMin(double *arr, int n) {
             mn = i;
         }
     }
-    printf("Min: %d\n", mn);
+    //printf("Min: %d\n", mn);
     return mn;
 }
 
-double Func(double mn, double mx) {
-    double f = (mx + mn) / 2;
+double Func(int mn, int mx, double *arr) {
+    double f = (*(arr + mx) + *(arr + mn)) / 2;
     return f;
 }
 
 void Var0(double *arr, int n) {
     double sum = 0;
     int start = FindMax(arr, n);
-    double f = Func(FindMin(arr, n), FindMax(arr, n));
+    double f = Func(FindMin(arr, n), FindMax(arr, n), arr);
     for(int i = start + 1; i < n; i ++) {
         if(*(arr + i) > f) {
             sum += *(arr + i);
         }
     }
     printf("%lf\n", sum);
+    
 }
