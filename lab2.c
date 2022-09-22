@@ -55,10 +55,6 @@ bool Check(double x1, double x2, int iter) {
         printf("Enter the number of iterations greater than zero\n");
         return false;
     }
-    else if(x1 == 1.5708 || x2 == 1.5708) {
-        printf("Numbers cannot be equal to 1.5708\n");
-        return false;
-    }
     else if(iter == 1 && x1 != x2) {
         printf("Numbers cannot be different in one iteration\n");
         return false;
@@ -100,7 +96,7 @@ double Delta(double x1, double x2, int iter) {
 }
 
 void FirstTable(double x1, double x2, int iter) {
-    double delt, x;
+    double delt, x, f;
     delt = Delta(x1, x2, iter);
     printf("for:\nx    |");
     x = x1;
@@ -113,14 +109,20 @@ void FirstTable(double x1, double x2, int iter) {
             }
         }
         else {
-            Cell(tan(x) * sqrt(x));
+            f = tan(x) * sqrt(x);
+            if(isnan(f)) {
+                printf("Error  |");
+            }
+            else {
+                Cell(f);
+            }
         }
         x += delt;
     }
 }
 
 void SecondTable(double x1, double x2, int iter) {
-    double delt, x, i;
+    double delt, x, i, f;
     delt = Delta(x1, x2, iter);
     printf("while:\nx    |");
     x = x1;
@@ -131,13 +133,19 @@ void SecondTable(double x1, double x2, int iter) {
     printf("\nf(x) |");
     x = x1;
     while(x < x2 + delt - 0.0000001) {
-        Cell(tan(x) * sqrt(x));
+        f = tan(x) * sqrt(x);
+        if(isnan(f)) {
+            printf("Error  |");
+        }
+        else {
+            Cell(f);
+        }
         x += delt;
     }
 }
 
 void ThirdTable(double x1, double x2, int iter) {
-    double delt, x, i;
+    double delt, x, i, f;
     delt = Delta(x1, x2, iter);
     printf("do while:\nx    |");
     x = x1;
@@ -148,7 +156,13 @@ void ThirdTable(double x1, double x2, int iter) {
     printf("\nf(x) |");
     x = x1;
     do{
-        Cell(tan(x) * sqrt(x));
+        f = tan(x) * sqrt(x);
+        if(isnan(f)) {
+            printf("Error  |");
+        }
+        else {
+            Cell(f);
+        }
         x += delt;
     }while(x < x2 + delt - 0.0000001);
 }
