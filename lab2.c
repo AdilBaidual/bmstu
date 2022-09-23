@@ -82,7 +82,7 @@ void Input(double *x1, double *x2, int *iter) {
 }
 
 void Cell(double a) {
-    printf("%-7.3g|", a);
+    printf("%-7.3lf|", a);
 }
 
 double Delta(double x1, double x2, int iter) {
