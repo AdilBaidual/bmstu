@@ -3,26 +3,30 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <stdbool.h>
-
+#include <malloc.h>
+//VAR 0
 void Input(double *a);
 void ArraySize(double *n);
 int CheckInt(double n);
 bool Check(double n);
-double Array(double *arr, int n);
+double *Array(int n);
 int FindMax(double *arr, int n);
 int FindMin(double *arr, int n);
 double Func(int mn, int mx, double *arr);
 void Var0(double *arr, int n);
 
 void main() {
-    double arr;
+    double *arr;
     double n;
     while(true) {
         ArraySize(&n);
         if(Check(n)) {
             n = CheckInt(n);
-            Array(&arr, n);
-            Var0(&arr, n);
+            arr = Array(n);
+            for(int i = 0; i < n; i++) {
+                printf("%lf\n", *(arr + i));
+            }   
+            Var0(arr, n);
             getch();
         }
         else {
@@ -56,16 +60,16 @@ int CheckInt(double n) {
     return a;
 }
 
-double Array(double *arr, int n) {
-    double *mas = malloc(n * sizeof(double));
+double *Array(int n) {
     double x;
+    double *mas = malloc(n * sizeof(double));
     printf("Enter array values\n");
     for(int i = 0; i < n; i++) {
         printf("%d ", i);
         Input(&x);
-        *(arr + i) = x;
+        *(mas + i) = x;
     }
-    arr = mas;
+    return mas;
 }
 
 int FindMax(double *arr, int n) {
@@ -75,7 +79,7 @@ int FindMax(double *arr, int n) {
             mx = i;
         }
     }
-    //printf(" Max: %d\n", mx);
+    printf(" Max: %d\n", mx);
     return mx;
 }
 
@@ -86,7 +90,7 @@ int FindMin(double *arr, int n) {
             mn = i;
         }
     }
-    //printf("Min: %d\n", mn);
+    printf("Min: %d\n", mn);
     return mn;
 }
 
