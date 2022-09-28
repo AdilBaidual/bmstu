@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <math.h>
 #include <conio.h>
-#include <stdbool.h>
+#include <stdint.h>
 
 void Input(double *E);
-bool Check(double E);
+int Check(double E);
 double Abs(double x1, double x2);
 double Factorial(double num, double lastfact);
 void RowSum(double E);
@@ -12,7 +12,7 @@ double RowElement(double n, double lastfact);
 
 void main() {
     double E;
-    while(true){
+    while(1){
         Input(&E);
         if(Check(E)) {
             RowSum(E);
@@ -31,12 +31,12 @@ void Input(double *E) {
     scanf("%lf", E);
 }
 
-bool Check(double E) {
+int Check(double E) {
     if(E <= 0) {
         printf("Enter a number greater than zero\n");
-        return false;
+        return 0;
     }
-    return true;
+    return 1;
 }
 
 double Abs(double x1, double x2) {
@@ -68,7 +68,6 @@ void RowSum(double E) {
         sa = RowElement(n, 1/sa);
         n += 1;
         S += sa;
-        printf("%.15lf %.15lf %.15lf\n", sa, sb, S);
     }
     printf("%.15lf\n", S);
 }

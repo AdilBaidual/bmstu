@@ -2,18 +2,18 @@
 #include <math.h>
 #include <stdlib.h>
 #include <conio.h>
-#include <stdbool.h>
 
 void Input(double *E, double *a, double *b);
-bool Check(double a, double b, double E);
+int Check(double a, double b, double E);
 double LeftRectangleMethod(double N, double x, double h);
 void RowSum(double E, double a, double b);
 double RowElement(double i, double x, double h);
+double rE(double E);
 double Abs(double x1, double x2);
 
 void main() {
     double E, a, b;
-    while(true){
+    while(1){
         Input(&E, &a, &b);
         if(Check(a, b, E)) {
             RowSum(E, a, b);
@@ -32,12 +32,12 @@ void Input(double *E, double *a, double *b) {
     scanf("%lf %lf", a, b);
 }
 
-bool Check(double a, double b, double E) {
-    if(a <= 0 || b <= 0 || E <= 0) {
+int Check(double a, double b, double E) {
+    if(E <= 0 || a <= 0 || b <= 0) {
         printf("Numbers must be greater than zero\n");
-        return false;
+        return 0;
     }
-    return true;
+    return 1;
 }
 
 double LeftRectangleMethod(double N, double x, double h) {
@@ -63,10 +63,25 @@ double Abs(double x1, double x2) {
     }
 }
 
+double rE(double E) {
+    double i = 1;
+    while(E > i) {
+        i *= 10;
+    }
+    return E / i;
+}
+
 void RowSum(double E, double a, double b) {
+    double flag = 0;
+    if(a > b) {
+        double a1 = a;
+        flag = 1;
+        a = b;
+        b = a1;
+        E = rE(E);
+    }
     double sa = LeftRectangleMethod(1, b, (b-a));
     double sb = LeftRectangleMethod(2, a + (b-a)/2, (b-a)/2);
-    printf("%lf %lf\n", sa, sb);
     double S;
     double N = 4;
     double h = 4;
@@ -74,10 +89,14 @@ void RowSum(double E, double a, double b) {
     while(Abs(sa, sb)>= E) {
         sa = sb;
         sb = LeftRectangleMethod(N, x, h);
-        printf("%lf %lf %lf %lf %lf\n", sa, sb, N, x, h);
         N *= 2;
         h = (b - a)/N;
         x = a + h;
     }
-    printf(" %.15lf\n", sb);
+    if(flag == 1) {
+        printf(" %.15lf\n", (sb*-1));
+    }
+    else {
+        printf(" %.15lf\n", sb);
+    }
 }
