@@ -74,5 +74,3 @@ void RowSum(double E) {
     }while(Abs(S, S - s_old) >= E);
     printf("%.15lf", S);
 }
-//1.718281525573193 - старая
-//1.718281828459046 - новая
