@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <math.h>
 #include <conio.h>
-#include <stdbool.h>
+#include <stdint.h>
 
 void Input(double *E);
-bool Check(double E);
+int Check(double E);
 double Abs(double x1, double x2);
 double Factorial(double num, double lastfact);
 void RowSum(double E);
@@ -12,7 +12,7 @@ double RowElement(double n, double lastfact);
 
 void main() {
     double E;
-    while(true){
+    while(1){
         Input(&E);
         if(Check(E)) {
             RowSum(E);
@@ -31,12 +31,12 @@ void Input(double *E) {
     scanf("%lf", E);
 }
 
-bool Check(double E) {
+int Check(double E) {
     if(E <= 0) {
         printf("Enter a number greater than zero\n");
-        return false;
+        return 0;
     }
-    return true;
+    return 1;
 }
 
 double Abs(double x1, double x2) {
@@ -50,6 +50,7 @@ double Abs(double x1, double x2) {
 
 double Factorial(double n, double lastfact) {
     double fact = lastfact * n;
+    //printf("factorial %lf ", fact);
     return fact;
 }
 
@@ -60,15 +61,18 @@ double RowElement(double n, double lastfact) {
 
 void RowSum(double E) {
     double S = 1;
-    double sa = 1;
-    double sb = 0;
+    double s_new = 1;
+    double s_old;
     double n = 2;
-    while(Abs(sa, sb) >= E) {
-        sb = sa;
-        sa = RowElement(n, 1/sa);
+    do {
+        s_old = s_new;
+        s_new = RowElement(n, 1/s_old);
         n += 1;
-        S += sa;
-        printf("%.15lf %.15lf %.15lf\n", sa, sb, S);
-    }
-    printf("%.15lf\n", S);
+        S += s_new;
+        printf("%lf %lf\n", s_old, s_new);
+        //getch();
+    }while(Abs(S, S - s_old) >= E);
+    printf("%.15lf", S);
 }
+//1.718281525573193 - старая
+//1.718281828459046 - новая
