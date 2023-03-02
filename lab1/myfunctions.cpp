@@ -1,4 +1,4 @@
-#include "calcFunctions.h"
+#include "myfunctions.h"
 #include <string.h>
 
 int strcount(const char *str, char val) {

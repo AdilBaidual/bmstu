@@ -17,8 +17,10 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        calcFunctions.h
-        calcFunctions.cpp
+        businesslogic.h
+        businesslogic.cpp
+        myfunctions.h
+        myfunctions.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

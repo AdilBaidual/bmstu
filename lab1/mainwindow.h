@@ -24,7 +24,7 @@ private:
     void deleteLast(QString *data);
     void cleareLable(QString *data);
     QString checkCalc(QString data);
-    void calc(QString data, char c);
+    void getCalc(QString data, char c);
     void setEnabledToBtn();
 
 private slots:

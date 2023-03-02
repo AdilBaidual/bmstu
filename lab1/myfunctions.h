@@ -1,5 +1,5 @@
-#ifndef CALCFUNCTIONS_H
-#define CALCFUNCTIONS_H
+#ifndef MYFUNCTIONS_H
+#define MYFUNCTIONS_H
 
 int strcount(const char *str, char val);
 int rfind(const char *str);
@@ -8,4 +8,4 @@ int isNumber(char c);
 int isSign(char c);
 int checkE(const char *data);
 
-#endif // CALCFUNCTIONS_H
+#endif // MYFUNCTIONS_H

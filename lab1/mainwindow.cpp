@@ -2,7 +2,8 @@
 #include "./ui_mainwindow.h"
 #include "string.h"
 #include <QMessageBox>
-#include "calcFunctions.h"
+#include "businesslogic.h"
+#include "myfunctions.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -50,23 +51,11 @@ QString MainWindow::checkCalc(QString data) {
     return data;
 }
 
-void MainWindow::calc(QString data, char c) {
-    switch (c) {
-    case '+':
-        result += data.toDouble();
-        qDebug() << "+: " << result;
-        break;
-    case '-':
-        result += data.toDouble();
-        break;
-    case '*':
-        result *= data.mid(1, data.length()).toDouble();
-        break;
-    case '/':
-        result /= data.mid(1, data.length()).toDouble();
-        break;
-    }
-    qDebug() << "Original String: " << result;
+void MainWindow::getCalc(QString data, char c) {
+    double num = data.mid(1, data.length()).toDouble();
+    arifmeticInput dataStruct = {result, num, c};
+    result = calc(dataStruct);
+    qDebug() << "Original String: " << dataStruct.sign;
     qDebug() << "Original String: " << data.toDouble();
 }
 
@@ -104,7 +93,7 @@ void MainWindow::arifmeticBtn() {
         qDebug() << "1: " << result;
     }
     if (isSign(str[0])) {
-        calc(data, str[0]);
+        getCalc(data, str[0]);
     }
     data = btn->text();
     if (data == '=') {
