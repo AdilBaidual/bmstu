@@ -42,8 +42,14 @@ void MainWindow::dataLoad() {
     const char* path = ((qpath).toStdString()).c_str();
     //qDebug() << "Result: " << qcolum.toInt();
     if (checkInput(region)) {
+        qDebug() << "REGION: " << region;
         tableStruct table = getData(path, region, qcolum.toInt());
         char ***data = table.data;
+        qDebug() << "REGION: " << region;
+        for (int i = 0; i < table.rowLen; i++) {
+            qDebug() << data[i][0] << data[i][1] << data[i][2] << data[i][3] << data[i][4] << data[i][5] << data[i][6];
+        }
+        qDebug() << table.collumLen << table.rowLen << table.error;
         if (!(table.error)) {
             if (data != NULL) {
                 outputData(table.rowLen, table.collumLen, data);
